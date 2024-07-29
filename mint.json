@@ -7,18 +7,18 @@
   },
   "favicon": "/favicon.svg",
   "colors": {
-    "primary": "#0D9373",
+    "primary": "#de3131",
     "light": "#07C983",
     "dark": "#0D9373",
     "anchors": {
-      "from": "#0D9373",
-      "to": "#07C983"
+      "from": "#de3131",
+      "to": "#a81b1b"
     }
   },
   "topbarLinks": [
     {
       "name": "Support",
-      "url": "mailto:hi@mintlify.com"
+      "url": "mailto:support@axleapi.com"
     }
   ],
   "topbarCtaButton": {
