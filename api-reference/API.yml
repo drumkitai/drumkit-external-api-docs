@@ -7,7 +7,7 @@ servers:
 security:
   - bearerAuth: []
 paths: 
-  /loads:
+  /integrations/webhooks/loads:
     post:
       tags:
         - Loads 
@@ -31,7 +31,7 @@ paths:
         '500':
           description: Internal server error
 
-  /check-calls:
+  /integrations/webhooks/check-calls:
     post:
       tags:
         - Track & Trace
@@ -55,7 +55,7 @@ paths:
         '500':
           description: Internal server error
           
-  /exceptions:
+  /integrations/webhooks/exceptions:
     post:
       tags: 
         - Track & Trace
@@ -79,7 +79,7 @@ paths:
         '500':
           description: Internal server error
 
-  /quotes:
+  /integrations/webhooks/quotes:
     post:
       tags: 
         - Quotes
