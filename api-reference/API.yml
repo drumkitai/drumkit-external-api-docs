@@ -1,0 +1,568 @@
+openapi: "3.0.2"
+info:
+  title: Beacon API
+  version: "v1"
+servers:
+  - url: https://beacon-api.axleapi.com/v1
+security:
+  - bearerAuth: []
+paths: 
+  /loads:
+    post:
+      summary: Create a new load
+      description: Send a new load to Beacon
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Load'
+      responses:
+        '201':
+          description: Load created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          description: Bad request
+        '500':
+          description: Internal server error
+
+  /check-calls:
+    post:
+      summary: Create a new check call
+      description: Send a new check call to be stored in Beacon
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CheckCall'
+      responses:
+        '201':
+          description: Check call created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          description: Bad request
+        '500':
+          description: Internal server error
+          
+  /exceptions:
+    post:
+      summary: Create a new exception
+      description: Send a new exception to be stored in Beacon
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Exception'
+      responses:
+        '201':
+          description: Exception created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          description: Bad request
+        '500':
+          description: Internal server error
+
+  /quotes:
+    post:
+      summary: Create a new quote
+      description: Send a new quote to be stored in  Beacon
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Quote'
+      responses:
+        '201':
+          description: Quote created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          description: Bad request
+        '500':
+          description: Internal server error
+
+components:
+  schemas:
+    Load:
+      type: object
+      properties:
+        external_tms_load_id:
+          type: string
+        pro_number: 
+          type: string
+        status:
+          type: string
+        customer:
+          $ref: '#/components/schemas/Customer'
+        billto:
+          $ref: '#/components/schemas/BillTo'
+        pickup:
+          $ref: '#/components/schemas/Pickup'
+        consignee:
+          $ref: '#/components/schemas/Consignee'
+        carrier:
+          $ref: '#/components/schemas/Carrier'
+        ratedata:
+          $ref: '#/components/schemas/RateData'
+        specifications:
+          $ref: '#/components/schemas/Specifications'
+        in_pallet_count:
+          type: integer
+        out_pallet_count:
+          type: integer
+        num_commodities:
+          type: integer
+        total_weight:
+          type: number
+        billable_weight:
+          type: number
+        po_nums:
+          type: string
+        operator:
+          type: string
+        route_miles:
+          type: number
+
+    Customer:
+      type: object
+      properties:
+        external_tms_id:
+          type: string
+        name:
+          type: string
+        address_line1:
+          type: string
+        address_line2:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zipcode:
+          type: string
+        country:
+          type: string
+        contact:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+        ref_number:
+          type: string
+
+    BillTo:
+      type: object
+      properties:
+        external_tms_id:
+          type: string
+        name:
+          type: string
+        address_line1:
+          type: string
+        address_line2:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zipcode:
+          type: string
+        country:
+          type: string
+        contact:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+
+    Pickup:
+      type: object
+      properties:
+        external_tms_id:
+          type: string
+        name:
+          type: string
+        address_line1:
+          type: string
+        address_line2:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zipcode:
+          type: string
+        country:
+          type: string
+        contact:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+        business_hours:
+          type: string
+        ref_number:
+          type: string
+        ready_time:
+          type: string
+          format: date-time
+        appt_time:
+          type: string
+          format: date-time
+        appt_note:
+          type: string
+        timezone:
+          type: string
+
+    Consignee:
+      type: object
+      properties:
+        external_tms_id:
+          type: string
+        name:
+          type: string
+        address_line1:
+          type: string
+        address_line2:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zipcode:
+          type: string
+        country:
+          type: string
+        contact:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+        business_hours:
+          type: string
+        ref_number:
+          type: string
+        must_deliver:
+          type: string
+        appt_time:
+          type: string
+          format: date-time
+        appt_note:
+          type: string
+        timezone:
+          type: string
+
+    Carrier:
+      type: object
+      properties:
+        mc_number:
+          type: string
+        dot_number:
+          type: string
+        name:
+          type: string
+        phone:
+          type: string
+        dispatcher:
+          type: string
+        seal_number:
+          type: string
+        scac:
+          type: string
+        first_driver_name:
+          type: string
+        first_driver_phone:
+          type: string
+        second_driver_name:
+          type: string
+        second_driver_phone:
+          type: string
+        email:
+          type: string
+        dispatch_city:
+          type: string
+        dispatch_state:
+          type: string
+        external_tms_truck_id:
+          type: string
+        external_tms_trailer_id:
+          type: string
+        confirmation_sent_time:
+          type: string
+          format: date-time
+        confirmation_received_time:
+          type: string
+          format: date-time
+        dispatched_time:
+          type: string
+          format: date-time
+        expected_pickup_time:
+          type: string
+          format: date-time
+        pickup_start:
+          type: string
+          format: date-time
+        pickup_end:
+          type: string
+          format: date-time
+        expected_delivery_time:
+          type: string
+          format: date-time
+        delivery_start:
+          type: string
+          format: date-time
+        delivery_end:
+          type: string
+          format: date-time
+        signed_by:
+          type: string
+        external_tms_id:
+          type: string
+
+    RateData:
+      type: object
+      properties:
+        customer_rate_type:
+          type: string
+        customer_num_hours:
+          type: number
+        customer_lh_rate_usd:
+          type: number
+        fsc_percent:
+          type: number
+        fsc_per_mile:
+          type: number
+        carrier_rate_type:
+          type: string
+        carrier_num_hours:
+          type: number
+        carrier_lh_rate_usd:
+          type: number
+        carrier_max_rate:
+          type: number
+        net_profit_usd:
+          type: number
+        profit_percent:
+          type: number
+
+    Specifications:
+      type: object
+      properties:
+        min_temp_fahrenheit:
+          type: number
+        max_temp_fahrenheit:
+          type: number
+        liftgate_pickup:
+          type: boolean
+        liftgate_delivery:
+          type: boolean
+        inside_pickup:
+          type: boolean
+        inside_delivery:
+          type: boolean
+        tarps:
+          type: boolean
+        oversized:
+          type: boolean
+        hazmat:
+          type: boolean
+        straps:
+          type: boolean
+        permits:
+          type: boolean
+        escorts:
+          type: boolean
+        seal:
+          type: boolean
+        custom_bonded:
+          type: boolean
+        labor:
+          type: boolean
+
+    SuccessResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+
+    CheckCall:
+      type: object
+      properties:
+        external_tms_load_id:
+          type: string
+        pro_number: 
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        message:
+          type: string
+        edi_reason:
+          type: string
+        date_time:
+          type: string
+          format: date-time
+        author:
+          type: string
+        notes:
+          type: string
+        date_time_with_timezone:
+          type: string
+          format: date-time
+        fragment_id:
+          type: string
+        lat:
+          type: number
+        lon:
+          type: number
+        shipment_status:
+          type: string
+        status:
+          type: string
+        reason:
+          type: string
+        end_date_time_with_timezone:
+          type: string
+          format: date-time
+        next_stop_eta_with_timezone:
+          type: string
+          format: date-time
+        source:
+          type: string
+
+    Exception:
+      type: object
+      properties:
+        external_tms_load_id:
+          type: string
+        pro_number: 
+          type: string
+        event_code:
+          type: string
+        input_user:
+          type: string
+        carrier:
+          type: string
+        driver:
+          type: string
+        fault:
+          type: string
+        trailer:
+          type: string
+        note:
+          type: string
+        status:
+          type: string
+        date_time_with_timezone:
+          type: string
+          format: date-time
+    
+    Quote:
+      type: object
+      properties:
+        external_tms_load_id:
+          type: string
+        user_id:
+          type: integer
+        transport_type:
+          type: string
+        commodity:
+          type: string
+        weight:
+          type: number
+        target_buy_rate:
+          type: number
+        low_buy_rate:
+          type: number
+        high_buy_rate:
+          type: number
+        start_buy_rate:
+          type: number
+        fuel_rate:
+          type: number
+        distance:
+          type: number
+        confidence_level:
+          type: integer
+        currency:
+          type: string
+        target_sell_cost:
+          type: number
+        pickup_name:
+          type: string
+        pickup_address_line1:
+          type: string
+        pickup_address_line2:
+          type: string
+        pickup_city:
+          type: string
+        pickup_state:
+          type: string
+        pickup_zip:
+          type: string
+        pickup_date_with_timezone:
+          type: string
+          format: date-time
+        pickup_country:
+          type: string
+        dropoff_name:
+          type: string
+        dropoff_address_line1:
+          type: string
+        dropoff_address_line2:
+          type: string
+        dropoff_city:
+          type: string
+        dropoff_state:
+          type: string
+        dropoff_zip:
+          type: string
+        dropoff_country:
+          type: string
+        dropoff_date_with_timezone:
+          type: string
+          format: date-time
+        weight_lbs:
+          type: number
+        qualified_lead:
+          type: boolean
+        min_markup:
+          type: number
+        max_markup:
+          type: number
+        lead_contacted:
+          type: boolean
+        pipeline:
+          type: string
+        pallets:
+          type: object
+        total_cost:
+          type: number
+        email_address:
+          type: string
+        available:
+          type: boolean
+        notes:
+          type: string

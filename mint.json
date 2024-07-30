@@ -8,8 +8,8 @@
   "favicon": "/favicon.svg",
   "colors": {
     "primary": "#de3131",
-    "light": "#07C983",
-    "dark": "#0D9373",
+    "light": "#FFDAC7",
+    "dark": "#FE9659",
     "anchors": {
       "from": "#de3131",
       "to": "#a81b1b"
@@ -38,14 +38,9 @@
       "url": "https://mintlify.com/docs"
     },
     {
-      "name": "Community",
-      "icon": "slack",
-      "url": "https://mintlify.com/community"
-    },
-    {
       "name": "Blog",
       "icon": "newspaper",
-      "url": "https://mintlify.com/blog"
+      "url": "https://www.axleapi.com/blog"
     }
   ],
   "navigation": [
