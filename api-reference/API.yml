@@ -113,9 +113,9 @@ components:
     Load:
       type: object
       properties:
-        external_tms_load_id:
+        externalTMSLoadId:
           type: string
-        pro_number: 
+        proNumber: 
           type: string
         status:
           type: string
@@ -133,33 +133,33 @@ components:
           $ref: '#/components/schemas/RateData'
         specifications:
           $ref: '#/components/schemas/Specifications'
-        in_pallet_count:
+        inPalletCount:
           type: integer
-        out_pallet_count:
+        outPalletCount:
           type: integer
-        num_commodities:
+        numCommodities:
           type: integer
-        total_weight:
+        totalWeight:
           type: number
-        billable_weight:
+        billableWeight:
           type: number
-        po_nums:
+        poNums:
           type: string
         operator:
           type: string
-        route_miles:
+        routeMiles:
           type: number
 
     Customer:
       type: object
       properties:
-        external_tms_id:
+        externalTMSId:
           type: string
         name:
           type: string
-        address_line1:
+        addressLine1:
           type: string
-        address_line2:
+        addressLine2:
           type: string
         city:
           type: string
@@ -175,19 +175,19 @@ components:
           type: string
         email:
           type: string
-        ref_number:
+        refNumber:
           type: string
 
     BillTo:
       type: object
       properties:
-        external_tms_id:
+        externalTMSId:
           type: string
         name:
           type: string
-        address_line1:
+        addressLine1:
           type: string
-        address_line2:
+        addressLine2:
           type: string
         city:
           type: string
@@ -207,13 +207,13 @@ components:
     Pickup:
       type: object
       properties:
-        external_tms_id:
+        externalTMSId:
           type: string
         name:
           type: string
-        address_line1:
+        addressLine1:
           type: string
-        address_line2:
+        addressLine2:
           type: string
         city:
           type: string
@@ -229,17 +229,17 @@ components:
           type: string
         email:
           type: string
-        business_hours:
+        businessHours:
           type: string
-        ref_number:
+        refNumber:
           type: string
-        ready_time:
-          type: string
-          format: date-time
-        appt_time:
+        readyTime:
           type: string
           format: date-time
-        appt_note:
+        apptTime:
+          type: string
+          format: date-time
+        apptNote:
           type: string
         timezone:
           type: string
@@ -247,13 +247,13 @@ components:
     Consignee:
       type: object
       properties:
-        external_tms_id:
+        externalTMSId:
           type: string
         name:
           type: string
-        address_line1:
+        addressLine1:
           type: string
-        address_line2:
+        addressLine2:
           type: string
         city:
           type: string
@@ -269,16 +269,16 @@ components:
           type: string
         email:
           type: string
-        business_hours:
+        businessHours:
           type: string
-        ref_number:
+        refNumber:
           type: string
-        must_deliver:
+        mustDeliver:
           type: string
-        appt_time:
+        apptTime:
           type: string
           format: date-time
-        appt_note:
+        apptNote:
           type: string
         timezone:
           type: string
@@ -286,9 +286,9 @@ components:
     Carrier:
       type: object
       properties:
-        mc_number:
+        mcNumber:
           type: string
-        dot_number:
+        dotNumber:
           type: string
         name:
           type: string
@@ -296,100 +296,100 @@ components:
           type: string
         dispatcher:
           type: string
-        seal_number:
+        sealNumber:
           type: string
         scac:
           type: string
-        first_driver_name:
+        firstDriverName:
           type: string
-        first_driver_phone:
+        firstDriverPhone:
           type: string
-        second_driver_name:
+        secondDriverName:
           type: string
-        second_driver_phone:
+        secondDriverPhone:
           type: string
         email:
           type: string
-        dispatch_city:
+        dispatchCity:
           type: string
-        dispatch_state:
+        dispatchState:
           type: string
-        external_tms_truck_id:
+        externalTMSTruckId:
           type: string
-        external_tms_trailer_id:
+        externalTMSTrailerId:
           type: string
-        confirmation_sent_time:
-          type: string
-          format: date-time
-        confirmation_received_time:
+        confirmationSentTime:
           type: string
           format: date-time
-        dispatched_time:
+        confirmationReceivedTime:
           type: string
           format: date-time
-        expected_pickup_time:
+        dispatchedTime:
           type: string
           format: date-time
-        pickup_start:
+        expectedPickupTime:
           type: string
           format: date-time
-        pickup_end:
+        pickupStart:
           type: string
           format: date-time
-        expected_delivery_time:
+        pickupEnd:
           type: string
           format: date-time
-        delivery_start:
+        expectedDeliveryTime:
           type: string
           format: date-time
-        delivery_end:
+        deliveryStart:
           type: string
           format: date-time
-        signed_by:
+        deliveryEnd:
           type: string
-        external_tms_id:
+          format: date-time
+        signedBy:
+          type: string
+        externalTMSId:
           type: string
 
     RateData:
       type: object
       properties:
-        customer_rate_type:
+        customerRateType:
           type: string
-        customer_num_hours:
+        customerNumHours:
           type: number
-        customer_lh_rate_usd:
+        customerLhRateUsd:
           type: number
-        fsc_percent:
+        fscPercent:
           type: number
-        fsc_per_mile:
+        fscPerMile:
           type: number
-        carrier_rate_type:
+        carrierRateType:
           type: string
-        carrier_num_hours:
+        carrierNumHours:
           type: number
-        carrier_lh_rate_usd:
+        carrierLhRateUsd:
           type: number
-        carrier_max_rate:
+        carrierMaxRate:
           type: number
-        net_profit_usd:
+        netProfitUsd:
           type: number
-        profit_percent:
+        profitPercent:
           type: number
 
     Specifications:
       type: object
       properties:
-        min_temp_fahrenheit:
+        minTempFahrenheit:
           type: number
-        max_temp_fahrenheit:
+        maxTempFahrenheit:
           type: number
-        liftgate_pickup:
+        liftgatePickup:
           type: boolean
-        liftgate_delivery:
+        liftgateDelivery:
           type: boolean
-        inside_pickup:
+        insidePickup:
           type: boolean
-        inside_delivery:
+        insideDelivery:
           type: boolean
         tarps:
           type: boolean
@@ -405,7 +405,7 @@ components:
           type: boolean
         seal:
           type: boolean
-        custom_bonded:
+        customBonded:
           type: boolean
         labor:
           type: boolean
@@ -415,16 +415,16 @@ components:
       properties:
         id:
           type: integer
-        created_at:
+        createdAt:
           type: string
           format: date-time
 
     CheckCall:
       type: object
       properties:
-        external_tms_load_id:
+        externalTMSLoadId:
           type: string
-        pro_number: 
+        proNumber: 
           type: string
         city:
           type: string
@@ -432,34 +432,34 @@ components:
           type: string
         message:
           type: string
-        edi_reason:
+        ediReason:
           type: string
-        date_time:
+        dateTime:
           type: string
           format: date-time
         author:
           type: string
         notes:
           type: string
-        date_time_with_timezone:
+        dateTimeWithTimezone:
           type: string
           format: date-time
-        fragment_id:
+        fragmentId:
           type: string
         lat:
           type: number
         lon:
           type: number
-        shipment_status:
+        shipmentStatus:
           type: string
         status:
           type: string
         reason:
           type: string
-        end_date_time_with_timezone:
+        endDateTimeWithTimezone:
           type: string
           format: date-time
-        next_stop_eta_with_timezone:
+        nextStopEtaWithTimezone:
           type: string
           format: date-time
         source:
@@ -468,13 +468,13 @@ components:
     Exception:
       type: object
       properties:
-        external_tms_load_id:
+        externalTMSLoadId:
           type: string
-        pro_number: 
+        proNumber: 
           type: string
-        event_code:
+        eventCode:
           type: string
-        input_user:
+        inputUser:
           type: string
         carrier:
           type: string
@@ -488,92 +488,92 @@ components:
           type: string
         status:
           type: string
-        date_time_with_timezone:
+        dateTimeWithTimezone:
           type: string
           format: date-time
     
     Quote:
       type: object
       properties:
-        external_tms_load_id:
+        externalTMSLoadId:
           type: string
-        user_id:
+        userId:
           type: integer
-        transport_type:
+        transportType:
           type: string
         commodity:
           type: string
         weight:
           type: number
-        target_buy_rate:
+        targetBuyRate:
           type: number
-        low_buy_rate:
+        lowBuyRate:
           type: number
-        high_buy_rate:
+        highBuyRate:
           type: number
-        start_buy_rate:
+        startBuyRate:
           type: number
-        fuel_rate:
+        fuelRate:
           type: number
         distance:
           type: number
-        confidence_level:
+        confidenceLevel:
           type: integer
         currency:
           type: string
-        target_sell_cost:
+        targetSellCost:
           type: number
-        pickup_name:
+        pickupName:
           type: string
-        pickup_address_line1:
+        pickupAddressLine1:
           type: string
-        pickup_address_line2:
+        pickupAddressLine2:
           type: string
-        pickup_city:
+        pickupCity:
           type: string
-        pickup_state:
+        pickupState:
           type: string
-        pickup_zip:
+        pickupZip:
           type: string
-        pickup_date_with_timezone:
+        pickupDateWithTimezone:
           type: string
           format: date-time
-        pickup_country:
+        pickupCountry:
           type: string
-        dropoff_name:
+        dropoffName:
           type: string
-        dropoff_address_line1:
+        dropoffAddressLine1:
           type: string
-        dropoff_address_line2:
+        dropoffAddressLine2:
           type: string
-        dropoff_city:
+        dropoffCity:
           type: string
-        dropoff_state:
+        dropoffState:
           type: string
-        dropoff_zip:
+        dropoffZip:
           type: string
-        dropoff_country:
+        dropoffCountry:
           type: string
-        dropoff_date_with_timezone:
+        dropoffDateWithTimezone:
           type: string
           format: date-time
-        weight_lbs:
+        weightLbs:
           type: number
-        qualified_lead:
+        qualifiedLead:
           type: boolean
-        min_markup:
+        minMarkup:
           type: number
-        max_markup:
+        maxMarkup:
           type: number
-        lead_contacted:
+        leadContacted:
           type: boolean
         pipeline:
           type: string
         pallets:
           type: object
-        total_cost:
+        totalCost:
           type: number
-        email_address:
+        emailAddress:
           type: string
         available:
           type: boolean
