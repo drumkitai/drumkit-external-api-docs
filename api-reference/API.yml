@@ -9,6 +9,8 @@ security:
 paths: 
   /loads:
     post:
+      tags:
+        - Loads 
       summary: Create a new load
       description: Send a new load to Beacon
       requestBody:
@@ -31,6 +33,8 @@ paths:
 
   /check-calls:
     post:
+      tags:
+        - Track & Trace
       summary: Create a new check call
       description: Send a new check call to be stored in Beacon
       requestBody:
@@ -53,6 +57,8 @@ paths:
           
   /exceptions:
     post:
+      tags: 
+        - Track & Trace
       summary: Create a new exception
       description: Send a new exception to be stored in Beacon
       requestBody:
@@ -75,6 +81,8 @@ paths:
 
   /quotes:
     post:
+      tags: 
+        - Quotes
       summary: Create a new quote
       description: Send a new quote to be stored in  Beacon
       requestBody:
@@ -96,6 +104,11 @@ paths:
           description: Internal server error
 
 components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
   schemas:
     Load:
       type: object
