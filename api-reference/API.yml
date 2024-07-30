@@ -113,9 +113,9 @@ components:
     Load:
       type: object
       properties:
-        externalTMSLoadId:
+        externalTMSLoadID:
           type: string
-        proNumber: 
+        freightLoadID: 
           type: string
         status:
           type: string
@@ -422,9 +422,9 @@ components:
     CheckCall:
       type: object
       properties:
-        externalTMSLoadId:
+        externalTMSLoadID:
           type: string
-        proNumber: 
+        freightLoadID: 
           type: string
         city:
           type: string
@@ -468,9 +468,9 @@ components:
     Exception:
       type: object
       properties:
-        externalTMSLoadId:
+        externalTMSLoadID:
           type: string
-        proNumber: 
+        freightLoadID: 
           type: string
         eventCode:
           type: string
@@ -495,7 +495,7 @@ components:
     Quote:
       type: object
       properties:
-        externalTMSLoadId:
+        externalTMSLoadID:
           type: string
         userId:
           type: integer
