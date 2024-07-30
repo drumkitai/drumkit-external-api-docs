@@ -121,7 +121,7 @@ components:
           type: string
         customer:
           $ref: '#/components/schemas/Customer'
-        billto:
+        billTo:
           $ref: '#/components/schemas/BillTo'
         pickup:
           $ref: '#/components/schemas/Pickup'
@@ -129,7 +129,7 @@ components:
           $ref: '#/components/schemas/Consignee'
         carrier:
           $ref: '#/components/schemas/Carrier'
-        ratedata:
+        rateData:
           $ref: '#/components/schemas/RateData'
         specifications:
           $ref: '#/components/schemas/Specifications'
