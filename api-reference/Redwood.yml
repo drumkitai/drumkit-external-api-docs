@@ -1,0 +1,159 @@
+openapi: "3.0.2"
+info:
+  title: Drumkit - Redwood integration
+  version: "v1"
+  description: API for automating Redwood's workflows by integrating Outlook with Redwood's internal tools
+servers:
+  - url: https://devapi.tenant2.dev.redwoodconnect.com/dev/
+security:
+  - ApiKeyAuth: []
+
+paths:
+  /run/execute_process:
+    post:
+      summary: Send data to Redwood Connect
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExecuteProcessRequest'
+            example:
+              $ref: '#/components/examples/ExecuteProcessExample'
+      responses:
+        '202':
+          description: Process execution successful
+        '400':
+          description: Bad request (invalid payload format)
+        '401':
+          description: Unauthorized (invalid API key)
+        '500':
+          description: Internal server error
+
+components:
+  securitySchemes:
+    ApiKeyAuth:        
+      type: apiKey
+      in: header       # The API key is expected to be in the header
+      name: x-api-key
+  schemas:
+    ExecuteProcessRequest:
+        type: object
+        properties:
+          metadata:
+            type: object
+            properties:
+              method_params:
+                type: object
+                properties:
+                  process_id:
+                    type: string
+                    description: Unique identifier for the process
+                  step_id:
+                    type: string
+                    description: Unique identifier for the execution step
+          payload:
+            $ref: '#/components/schemas/TruckListPayload'
+        required:
+          - metadata
+          - payload
+    TruckListPayload:
+      type: object
+      properties:
+        truckListId:
+          type: integer
+        userName:
+          type: string
+        userEmail:
+          type: string
+          format: email
+        carrier:
+          type: object
+          properties:
+            carrierName:
+              type: string
+            carrierMc:
+              type: string
+            carrierDot:
+              type: string
+            contactEmail:
+              type: string
+              format: email
+            contactName:
+              type: string
+          required:
+            - contactEmail
+        trucks:
+          type: array
+          items:
+            type: object
+            properties:
+              truckId:
+                type: integer
+              truckType:
+                type: string
+                enum:
+                  - Van
+                  - Reefer
+                  - Flatbed
+                description: The default value is "Van" if the carrier doesn't explicitly mention a type
+              pickupCity:
+                type: string
+              pickupState:
+                type: string
+                minLength: 2
+                maxLength: 2
+              pickupZip:
+                type: string
+              pickupDate:
+                type: string
+                format: date
+              dropoffCity:
+                type: string
+              dropoffState:
+                type: string
+                minLength: 2
+                maxLength: 2
+              dropoffZip:
+                type: string
+              dropoffDate:
+                type: string
+                format: date
+            required:
+              - truckId
+              - truckType
+      required:
+        - truckListId
+        - userName
+        - userEmail
+        - carrier
+        - trucks
+
+  examples:
+    ExecuteProcessExample:
+      value:
+        metadata:
+          method_params:
+            process_id: "00214bf4-62f7-4f81-8b8f-50aa732dbade"
+            step_id: "c5b21826-fcb9-4349-bbc1-4c73e9824237"
+        payload:           
+          truckListId: 1212
+          userName: "Kris Wozny"
+          userEmail: "kwozny@redwoodlogistics.com"
+          carrier:
+            carrierName: "Midwest Trucking"
+            carrierMc: "7534565"
+            carrierDot: "3805142"
+            contactEmail: "anne@midwesttrucking.com"
+            contactName: "Anne Holden"
+          trucks:
+            - truckId: 3231
+              truckType: "Van"
+              pickupCity: "Boston"
+              pickupState: "MA"
+              pickupZip: "02116"
+              pickupDate: "2024-10-31"
+              dropoffCity: "Chicago"
+              dropoffState: "IL"
+              dropoffZip: "60131"
+              dropoffDate: "2024-11-31"
