@@ -67,6 +67,8 @@ components:
         userEmail:
           type: string
           format: email
+        isDraft: 
+          type: boolean
         carrier:
           type: object
           properties:
@@ -97,6 +99,8 @@ components:
                   - Reefer
                   - Flatbed
                 description: The default value is "Van" if the carrier doesn't explicitly mention a type
+              truckLength: 
+                type: number 
               pickupCity:
                 type: string
               pickupState:
@@ -122,6 +126,8 @@ components:
             required:
               - truckId
               - truckType
+              - pickupCity
+              - pickupState
       required:
         - truckListId
         - userName
@@ -140,6 +146,7 @@ components:
           truckListId: 1212
           userName: "Kris Wozny"
           userEmail: "kwozny@redwoodlogistics.com"
+          isDraft: true
           carrier:
             carrierName: "Midwest Trucking"
             carrierMc: "7534565"
@@ -149,6 +156,7 @@ components:
           trucks:
             - truckId: 3231
               truckType: "Van"
+              truckLength: 53
               pickupCity: "Boston"
               pickupState: "MA"
               pickupZip: "02116"
