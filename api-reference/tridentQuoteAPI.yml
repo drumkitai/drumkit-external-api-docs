@@ -1,0 +1,115 @@
+openapi: 3.0.1
+info:
+  title: Quick Quote API
+  description: This API captures two interactions. The first is the quote response the broker sees from Greenscreens, and the second is the quote response the broker is sending to the customer.
+  version: "1.0"
+paths:
+  /gs-quote:
+    get:
+      summary: Get GS Quote Response
+      responses:
+        "200":
+          description: A Greenscreens QuoteResponse object with user email
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GSQuoteResponse"
+  /trident-quote:
+    get:
+      summary: Get Trident Quote Response
+      responses:
+        "200":
+          description: A Quote Response object from the broker after creating an email reply draft
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TridentQuoteResponse"
+components:
+  schemas:
+    GSQuoteResponse:
+      type: object
+      properties:
+        userEmail:
+          type: string
+        customerEmail:
+          type: string
+        stops:
+          type: array
+          items:
+            $ref: "#/components/schemas/Stop"
+        selectedRateName:
+          $ref: "#/components/schemas/SelectedCarrierType"
+        networkLaneRateDistance:
+          type: number
+        networkLaneRateTargetBuy:
+          type: number
+        networkLaneRateConfidenceLevel:
+          type: number
+        laneRateDistance:
+          type: number
+        laneRateTargetBuy:
+          type: number
+        laneRateConfidenceLevel:
+          type: number
+      required:
+        - userEmail
+        - customerEmail
+        - stops
+        - selectedRateName
+        - networkLaneRateDistance
+        - networkLaneRateTargetBuy
+        - networkLaneRateConfidenceLevel
+        - laneRateDistance
+        - laneRateTargetBuy
+        - laneRateConfidenceLevel
+    TridentQuoteResponse:
+      type: object
+      properties:
+        userEmail:
+          type: string
+        stops:
+          type: array
+          items:
+            $ref: "#/components/schemas/Stop"
+        carrierCost:
+          type: number
+        margin:
+          type: number
+        targetSell:
+          type: number
+        draftResponse:
+          type: string
+        customerEmail:
+          type: string
+      required:
+        - userEmail
+        - stops
+        - carrierCost
+        - margin
+        - targetSell
+        - draftResponse
+        - customerEmail
+    Stop:
+      type: object
+      properties:
+        order:
+          type: integer
+        city:
+          type: string
+        state:
+          type: string
+        zip:
+          type: string
+        country:
+          type: string
+      required:
+        - order
+        - city
+        - state
+        - zip
+        - country
+    SelectedCarrierType:
+      type: string
+      enum:
+        - NETWORK
+        - BUYPOWER
