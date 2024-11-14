@@ -31,7 +31,7 @@ components:
       properties:
         userEmail:
           type: string
-        senderEmail:
+        customerEmail:
           type: string
         stops:
           type: array
@@ -53,7 +53,7 @@ components:
           type: number
       required:
         - userEmail
-        - senderEmail
+        - customerEmail
         - stops
         - selectedRateName
         - networkLaneRateDistance
@@ -79,7 +79,7 @@ components:
           type: number
         draftResponse:
           type: string
-        recipientEmail:
+        customerEmail:
           type: string
       required:
         - userEmail
@@ -88,7 +88,7 @@ components:
         - margin
         - targetSell
         - draftResponse
-        - recipientEmail
+        - customerEmail
     Stop:
       type: object
       properties:
