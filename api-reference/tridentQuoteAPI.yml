@@ -14,22 +14,24 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/GSQuoteResponse"
-  /broker-quote:
+  /trident-quote:
     get:
-      summary: Get Broker Quote Response
+      summary: Get Trident Quote Response
       responses:
         "200":
           description: A Quote Response object from the broker after creating an email reply draft
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/BrokerQuoteResponse"
+                $ref: "#/components/schemas/TridentQuoteResponse"
 components:
   schemas:
     GSQuoteResponse:
       type: object
       properties:
         userEmail:
+          type: string
+        senderEmail:
           type: string
         stops:
           type: array
@@ -49,15 +51,18 @@ components:
           type: number
         laneRateConfidenceLevel:
           type: number
-        lowConfidenceThreshold:
-          type: number
-        mediumConfidenceThreshold:
-          type: number
       required:
         - userEmail
+        - senderEmail
         - stops
         - selectedRateName
-    BrokerQuoteResponse:
+        - networkLaneRateDistance
+        - networkLaneRateTargetBuy
+        - networkLaneRateConfidenceLevel
+        - laneRateDistance
+        - laneRateTargetBuy
+        - laneRateConfidenceLevel
+    TridentQuoteResponse:
       type: object
       properties:
         userEmail:
@@ -82,6 +87,8 @@ components:
         - carrierCost
         - margin
         - targetSell
+        - draftResponse
+        - recipientEmail
     Stop:
       type: object
       properties:
