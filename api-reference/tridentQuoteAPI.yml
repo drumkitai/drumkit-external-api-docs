@@ -5,30 +5,38 @@ info:
   version: "1.0"
 paths:
   /gs-quote:
-    get:
-      summary: Get GS Quote Response
+    post:
+      summary: Receive GS Quote Response
+      requestBody:
+        description: A Greenscreens Quote Response object with user and customer details
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GSQuoteRequest"
       responses:
         "200":
-          description: A Greenscreens QuoteResponse object with user email
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GSQuoteResponse"
+          description: Successfully received GS quote response
   /trident-quote:
-    get:
-      summary: Get Trident Quote Response
+    post:
+      summary: Receive Trident Quote Response
+      requestBody:
+        description: A Quote Response object from the broker after creating an email reply draft to send to the customer
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TridentQuoteRequest"
       responses:
         "200":
-          description: A Quote Response object from the broker after creating an email reply draft
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/TridentQuoteResponse"
+          description: Successful request
 components:
   schemas:
-    GSQuoteResponse:
+    GSQuoteRequest:
       type: object
       properties:
+        id:
+          type: string
         userEmail:
           type: string
         customerEmail:
@@ -52,6 +60,7 @@ components:
         laneRateConfidenceLevel:
           type: number
       required:
+        - id
         - userEmail
         - customerEmail
         - stops
@@ -62,10 +71,16 @@ components:
         - laneRateDistance
         - laneRateTargetBuy
         - laneRateConfidenceLevel
-    TridentQuoteResponse:
+    TridentQuoteRequest:
       type: object
       properties:
+        id:
+          type: string
+        gsQuoteId:
+          type: string
         userEmail:
+          type: string
+        customerEmail:
           type: string
         stops:
           type: array
@@ -79,16 +94,16 @@ components:
           type: number
         draftResponse:
           type: string
-        customerEmail:
-          type: string
       required:
+        - id
+        - gsQuoteId
         - userEmail
+        - customerEmail
         - stops
         - carrierCost
         - margin
         - targetSell
         - draftResponse
-        - customerEmail
     Stop:
       type: object
       properties:
