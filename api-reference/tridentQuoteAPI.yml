@@ -60,6 +60,7 @@ components:
         laneRateConfidenceLevel:
           type: number
       required:
+        - id
         - userEmail
         - customerEmail
         - stops
@@ -73,6 +74,8 @@ components:
     TridentQuoteRequest:
       type: object
       properties:
+        id:
+          type: string
         gsQuoteId:
           type: string
         userEmail:
@@ -92,6 +95,8 @@ components:
         draftResponse:
           type: string
       required:
+        - id
+        - gsQuoteId
         - userEmail
         - customerEmail
         - stops
